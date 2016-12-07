@@ -39,7 +39,7 @@ namespace Demo.Controllers
             }
             catch(Exception ex)
             {
-                ViewBag["error"] = ex.StackTrace;
+                ViewBag.error = ex.StackTrace;
             }
 
             return View();
@@ -75,12 +75,12 @@ namespace Demo.Controllers
             {
                 using (var context = ProductContextFactory.Create(connectionString))
                 {
-                    product = context.TProduct.Where(P => P.ProductNo.Equals(reqProductNo)).FirstOrDefault();
+                    product = context.tproduct.Where(P => P.ProductNo.Equals(reqProductNo)).FirstOrDefault();
                 }
             }
             catch (Exception ex)
             {
-                ViewBag["error"] = ex.StackTrace;
+                ViewBag.error = ex.StackTrace;
             }
 
             return Json(product);

@@ -7,8 +7,8 @@
 -debug:portable
 -nostdlib
 -nologo
-"D:\aspnet-mysql-demo\src\dotnetstarter\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"D:\aspnet-mysql-demo\src\dotnetstarter\bin\Debug\netcoreapp1.0\dotnetstarter.dll"
+"D:\AspBasic\src\dotnetstarter\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"D:\AspBasic\src\dotnetstarter\bin\Debug\netcoreapp1.0\dotnetstarter.dll"
 -r:"C:\Users\daltago87\.nuget\packages\Google.Protobuf\3.0.0\lib\netstandard1.0\Google.Protobuf.dll"
 -r:"C:\Users\daltago87\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\daltago87\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
@@ -206,8 +206,8 @@
 -r:"C:\Users\daltago87\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\daltago87\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\daltago87\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"D:\aspnet-mysql-demo\src\dotnetstarter\obj\Debug\netcoreapp1.0\dotnetstarterdotnet-compile.deps.json",dotnetstarter.deps.json
-"D:\aspnet-mysql-demo\src\dotnetstarter\Startup.cs"
-"D:\aspnet-mysql-demo\src\dotnetstarter\Controllers\HomeController.cs"
-"D:\aspnet-mysql-demo\src\dotnetstarter\Models\AccessLogContext.cs"
-"D:\aspnet-mysql-demo\src\dotnetstarter\Models\ProductContext.cs"
+-resource:"D:\AspBasic\src\dotnetstarter\obj\Debug\netcoreapp1.0\dotnetstarterdotnet-compile.deps.json",dotnetstarter.deps.json
+"D:\AspBasic\src\dotnetstarter\Startup.cs"
+"D:\AspBasic\src\dotnetstarter\Controllers\HomeController.cs"
+"D:\AspBasic\src\dotnetstarter\Models\AccessLogContext.cs"
+"D:\AspBasic\src\dotnetstarter\Models\ProductContext.cs"

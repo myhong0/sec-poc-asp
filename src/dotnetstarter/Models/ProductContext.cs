@@ -22,7 +22,7 @@ namespace Demo.Models
     {
         public ProductContext(DbContextOptions<ProductContext> options) : base(options){ }
 
-        public DbSet<Product> TProduct { get; set; }
+        public DbSet<Product> tproduct { get; set; }
     }
 
     public static class ProductContextFactory

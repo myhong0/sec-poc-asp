@@ -24,7 +24,7 @@ namespace Demo.Models
     {
         public AccessLogContext(DbContextOptions<AccessLogContext> options) : base(options){ }
 
-        public DbSet<AccessLog> TAccessLog { get; set; }
+        public DbSet<AccessLog> taccesslog { get; set; }
     }
 
     public static class AccessLogContextFactory
