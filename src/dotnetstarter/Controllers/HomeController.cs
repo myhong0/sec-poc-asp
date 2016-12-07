@@ -9,7 +9,7 @@ namespace Demo.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string dbConnection;
+        private readonly string dbConnection; 
         public HomeController()
         {
             dbConnection = Startup.ConnectionString;
