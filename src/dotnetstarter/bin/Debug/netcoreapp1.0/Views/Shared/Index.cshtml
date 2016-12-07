@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var slideFrom = 0;
+            var serviceURL = '/Home/ProductDetail';
+
+            $('#myCarousel').on('slide.bs.carousel', function (e) {
+                //var currentIndex = $('div.active').index() + 1;
+                //console.log(currentIndex);
+                var slideFrom = $(this).find('.active').index() + 1;
+                var slideTo = $(e.relatedTarget).index() + 1;
+                console.log(slideFrom + ' => ' + slideTo);
+                var nextDIV = $(this).find("#banner" + slideTo);
+                console.log(nextDIV);
+
+                $.ajax({
+                    type: "POST",
+                    url: serviceURL + "?productNo=" + slideTo,
+                    success: function (data) {
+
+                        $(nextDIV).find("p").html(data.productName + "<a class='btn btn-default' href='" + data.productUrl + "'>WebSite</a>");
+                        console.log(data);
+                    },
+                    error: function () { console.log('error');}
+                });
+
+
+
+
+            });
+        });
+    </script>
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active" id="banner1">
+            <img src="~/images/banner1.jpg" alt="Galaxy Gear VR" class="img-responsive"/>
+            <div class="carousel-caption" role="option">
+                <p >
+                    Galaxy Gear VR
+                    <a class="btn btn-default" href="http://www.samsung.com/global/galaxy/gear-vr/">
+                        WebSite
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item" id="banner2">
+            <img src="~/images/banner2.jpg" alt="Galaxy Gear3" class="img-responsive"/>
+            <div class="carousel-caption" role="option">
+                <p  id="banner2">
+                    Galaxy Gear3
+                    <a class="btn btn-default" href="http://www.samsung.com/global/galaxy/gear-s3/">
+                        WebSite
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item" id="banner3">
+            <img src="~/images/banner3.jpg" alt="Galaxy Gear 360" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Galaxy Gear 360
+                    <a class="btn btn-default" href="http://www.samsung.com/global/galaxy/gear-360/">
+                        WebSite
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Product</h2>
+        <ul>
+            <li><a asp-area="" asp-controller="Home" asp-action="About">Product Specification</a></li>
+        </ul>
+    </div>
+</div>

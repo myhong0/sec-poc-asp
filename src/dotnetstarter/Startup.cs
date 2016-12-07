@@ -1,26 +1,74 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-public class Startup
+namespace Demo
 {
-	public void Configure(IApplicationBuilder app)
-	{
-		app.UseDefaultFiles();
-		app.UseStaticFiles();
-    }
-
-    public static void Main(string[] args)
+    public class Startup
     {
-        var config = new ConfigurationBuilder()
-            .AddCommandLine(args)
-            .Build();
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
-        var host = new WebHostBuilder()
-                    .UseKestrel()
-                    .UseConfiguration(config)
-                    .UseStartup<Startup>()
-                    .Build();
-        host.Run();
+            Configuration = builder.Build();
+        }
+
+        public IConfigurationRoot Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Add framework services.
+            services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //}
+
+            app.UseDeveloperExceptionPage();
+
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        public static void Main(string[] args)
+        {
+            var config = new ConfigurationBuilder()
+               .AddCommandLine(args)
+               .Build();
+
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseConfiguration(config)
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
     }
 }
